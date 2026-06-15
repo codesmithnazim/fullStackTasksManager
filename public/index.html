@@ -8,19 +8,26 @@
     <link rel="stylesheet" href="output.css">
 </head>
 
-<body>
-    <div class="main flex justify-center items-center bg-amber-400 w-screen h-screen">
-        <div class="parent p-3 max-w-90">
-            <form class="w-full mb-2 border-red-600 border-2 flex justify-between ">
-                <input type="text " class="bg-white border-2 border-black p-3 w-3/4">
-                <button type="submit" class="border-2 p-3  border-black cursor-pointer">Add</button>
+<body class="bg-amber-400">
+    <div class="main flex flex-col items-center  w-screen h-full">
+        <div class="parent p-3 mt-40 max-w-130">
+            <form class="w-full mb-2 border-red-600 border-2 flex justify-between  sticky">
+                <input required type="text " class="bg-white border-2 border-black p-3 w-3/4 ">
+                <button type="submit" class="border-2 p-3  border-black w-25 cursor-pointer ">Add</button>
             </form>
-            <div class="showcase bg-white border-2 border-e-black w-full  p-3 mt-2">Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Consectetur minus repellendus atque odio, pariatur dolor cumque ipsa quasi
-                vero corruption. </div>
+
+            <div class="showcase flex flex-col  border-2 border-e-black " >
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsam nulla eius soluta assumenda,
+                    quasi sint earum itaque quibusdam laudantium!</p>
+                    <button class="bg-green-500 h-8 p-1 mr-0.5 rounded-[3px]" onclick="">Done</button>
+                    <button class="bg-red-700 h-8 p-1 ml-0.5 rounded-[3px] " onclick="">Delete</button> -->
+            </div>
 
         </div>
     </div>
+
+<!-- <div style="text-overflow: ; overflow: scroll;"></div> -->
+    
     <script src="app.js"></script>
 </body>
 

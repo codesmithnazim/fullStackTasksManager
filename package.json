@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch:server": "nodemon \"d:\\One Drive\\OneDrive\\Desktop\\A lot of mess up\\Notes Keeper App\\server.js\"",
-    "watch:tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch",
+    "watch:tailwind": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run watch:tailwind\" \"npm run watch:server\""
   },
