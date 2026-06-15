@@ -1,0 +1,27 @@
+{
+  "name": "notes-keeper-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:server": "nodemon \"d:\\One Drive\\OneDrive\\Desktop\\A lot of mess up\\Notes Keeper App\\server.js\"",
+    "watch:tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run watch:tailwind\" \"npm run watch:server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "concurrently": "^10.0.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.1"
+  }
+}
