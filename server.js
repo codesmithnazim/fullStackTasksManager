@@ -35,6 +35,17 @@ app.post("/api/task/add", (req, res) => {
     }
 })
 
+// Express route for controlling the delete requests
+app.post('/api/task/:id', async (req, res) => {
+    try {
+        const responceMsg = await tasks.deleteOne({ _id: { $eq: req.params.id } })
+        res.status(201).json(responceMsg)
+    } catch (error) {
+        console.log("The error during deleting the task", error)
+        res.status(400).json(responceMsg)
+
+    }
+})
 
 
 app.listen(port, () => {
