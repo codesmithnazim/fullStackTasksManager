@@ -28,17 +28,31 @@ async function loadTasks() {
         divForTask.innerHTML = `
                 <p class="w-80 wrap-break-word">${arrayOfTasks[index].taskName}</p>
                 <div class="buttons flex justify-between items-center">
-                <button class="status bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer" onclick="">Done</button>
+                <button class="status ${arrayOfTasks[index].isCompleted === false ? "undone" : "done"} bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer" >Done</button>
                 <button class="delete bg-red-700 h-8 p-1 ml-0.5 rounded-[3px] cursor-pointer " onclick="deleteFunction('${divForTask.getAttribute("_id")}')">Delete</button>
-                </div>
-                
+                </div>       
         `
         // Enable it for prinitng all the tasks
         // console.log(divForTask) 
         document.querySelector(".showcase").appendChild(divForTask)
+
+        // This evertListner will tooggle the status of all tasks, and  will change the iscompleted boolean value
     }
+    document.querySelectorAll(".status").forEach(e => {
+        e.addEventListener("click", (ee) => {
+            if (!e.classList.contains("done")) {
+                e.innerText = "Undo"
+                e.setAttribute("class", "done bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer")
+            }
+            else if (e.classList.contains("done")) {
+                e.innerText = "Done"
+                e.setAttribute("class", "undone bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer")
+            }
 
+            console.log(e, "\n", e.parentElement.parentElement)
 
+        })
+    })
 
 }
 
@@ -73,5 +87,8 @@ async function deleteFunction(params) {
         body: JSON.stringify({ id: params })
     })
 
+
     loadTasks()
 }
+
+
