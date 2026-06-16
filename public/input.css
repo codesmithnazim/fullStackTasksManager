@@ -1,2 +1,7 @@
-@import "tailwindcss"
+@import "tailwindcss";
 
+.done {
+    background-color: rgba(0, 128, 0, 0.501);
+    text-decoration: line-through;
+    /* color: black; */
+}

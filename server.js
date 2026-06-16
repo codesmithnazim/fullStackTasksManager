@@ -47,6 +47,28 @@ app.post('/api/task/:id', async (req, res) => {
     }
 })
 
+// Express route that handles the isCompleted status update
+app.patch("/api/task/:id", async (req, res) => {
+    try {
+        console.log("The new route is working, and this is the id of the doc", req.params.id)
+        let response = await tasks.findByIdAndUpdate(
+            req.params.id,
+            [{ $set: { isCompleted: { $not: ["$isCompleted"] } } }],
+            {
+                new: true,
+                "updatePipeline": true
+            }  // 👈 returns updated doc
+        );
+        res.status(200).json(response)
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+})
+
 
 app.listen(port, () => {
     console.log("Express Server is created successfully")

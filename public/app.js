@@ -28,10 +28,19 @@ async function loadTasks() {
         divForTask.innerHTML = `
                 <p class="w-80 wrap-break-word">${arrayOfTasks[index].taskName}</p>
                 <div class="buttons flex justify-between items-center">
-                <button class="status ${arrayOfTasks[index].isCompleted === false ? "undone" : "done"} bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer" >Done</button>
-                <button class="delete bg-red-700 h-8 p-1 ml-0.5 rounded-[3px] cursor-pointer " onclick="deleteFunction('${divForTask.getAttribute("_id")}')">Delete</button>
+                <button class="status ${arrayOfTasks[index].isCompleted === false ? "undone" : "done"}  bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer" >Done</button>
+                <button class="delete text-white bg-red-700 h-8 p-1 ml-0.5 rounded-[3px] cursor-pointer " onclick="deleteFunction('${divForTask.getAttribute("_id")}')">Delete</button>
                 </div>       
         `
+
+        if (divForTask.lastElementChild.firstElementChild.classList.contains("undone")) {
+            divForTask.lastElementChild.firstElementChild.innerText = "Done"
+            // divForTask.setAttribute("class", "done bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer")
+        }
+        else if (divForTask.lastElementChild.firstElementChild.classList.contains("done")) {
+            divForTask.lastElementChild.firstElementChild.innerText = "Undo"
+            // divForTask.setAttribute("class", "undone bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer")
+        }
         // Enable it for prinitng all the tasks
         // console.log(divForTask) 
         document.querySelector(".showcase").appendChild(divForTask)
@@ -39,14 +48,33 @@ async function loadTasks() {
         // This evertListner will tooggle the status of all tasks, and  will change the iscompleted boolean value
     }
     document.querySelectorAll(".status").forEach(e => {
-        e.addEventListener("click", (ee) => {
+        e.addEventListener("click", async (ee) => {
             if (!e.classList.contains("done")) {
+                // console.log(e.parentElement.parentElement.getAttribute("_id"))
+
+                const id = e.parentElement.parentElement.getAttribute("_id")
+                console.log(id)
+                let responce = await fetch(`${api}/${id}`, {
+                    method: "PATCH"
+                })
                 e.innerText = "Undo"
                 e.setAttribute("class", "done bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer")
+                // if (responce.ok) {
+                //     loadTasks()
+                // }
+
             }
             else if (e.classList.contains("done")) {
+                const id = e.parentElement.parentElement.getAttribute("_id")
+                console.log(id)
+                let responce = await fetch(`${api}/${id}`, {
+                    method: "PATCH"
+                })
                 e.innerText = "Done"
                 e.setAttribute("class", "undone bg-green-500 h-8 p-1 mr-0.5 rounded-[3px] cursor-pointer")
+                // if (responce.ok) {
+                //     loadTasks()
+                // }
             }
 
             console.log(e, "\n", e.parentElement.parentElement)
